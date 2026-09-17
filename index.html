@@ -74,7 +74,7 @@
 
       <div class="hero-art">
         <!-- 场景插画：鹈鹕骑车 -->
-        <svg class="scene" viewBox="0 0 520 420" role="img" aria-label="一只鹈鹕骑着自行车向前行驶">
+        <svg class="scene" viewBox="-34 0 560 420" role="img" aria-label="一只鹈鹕骑着自行车向前行驶">
           <defs>
             <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="var(--sky-1)"/>
@@ -86,20 +86,21 @@
             </linearGradient>
           </defs>
 
-          <rect x="0" y="0" width="520" height="330" fill="url(#skyG)"/>
-          <circle cx="430" cy="72" r="34" fill="var(--sun)" opacity=".9"/>
-          <ellipse cx="120" cy="70" rx="52" ry="20" fill="#fff" opacity=".55"/>
-          <ellipse cx="168" cy="80" rx="38" ry="15" fill="#fff" opacity=".45"/>
-          <ellipse cx="352" cy="118" rx="44" ry="16" fill="#fff" opacity=".4"/>
+          <!-- 背景铺满扩展后的画布 -->
+          <rect x="-40" y="0" width="610" height="330" fill="url(#skyG)"/>
+          <circle cx="420" cy="104" r="28" fill="var(--sun)" opacity=".9"/>
+          <ellipse cx="118" cy="72" rx="50" ry="19" fill="#fff" opacity=".55"/>
+          <ellipse cx="164" cy="82" rx="36" ry="14" fill="#fff" opacity=".45"/>
+          <ellipse cx="348" cy="120" rx="42" ry="15" fill="#fff" opacity=".4"/>
 
           <!-- 远山 -->
-          <path d="M0 268 L110 186 L200 268 Z" fill="var(--hill-far)" opacity=".55"/>
-          <path d="M150 268 L280 168 L410 268 Z" fill="var(--hill-far)" opacity=".45"/>
-          <path d="M330 268 L460 196 L520 268 Z" fill="var(--hill-far)" opacity=".5"/>
+          <path d="M-40 268 L70 186 L160 268 Z" fill="var(--hill-far)" opacity=".55"/>
+          <path d="M110 268 L240 168 L370 268 Z" fill="var(--hill-far)" opacity=".45"/>
+          <path d="M300 268 L430 196 L540 268 Z" fill="var(--hill-far)" opacity=".5"/>
 
           <!-- 路面 -->
-          <rect x="0" y="300" width="520" height="120" fill="url(#roadG)"/>
-          <path d="M0 300 H520" stroke="var(--road-line)" stroke-width="2" opacity=".5"/>
+          <rect x="-40" y="300" width="610" height="120" fill="url(#roadG)"/>
+          <path d="M-40 300 H570" stroke="var(--road-line)" stroke-width="2" opacity=".5"/>
           <g class="road-dash">
             <rect class="dash" x="20"  y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
             <rect class="dash" x="140" y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
@@ -121,24 +122,24 @@
             <!-- 车轮 -->
             <g class="wheel wheel-rear" transform="translate(196,300)">
               <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
-              <circle r="40" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity=".28"/>
-              <g stroke="var(--ink)" stroke-width="2" opacity=".75">
-                <line x1="-40" y1="0" x2="40" y2="0"/>
-                <line x1="0" y1="-40" x2="0" y2="40"/>
-                <line x1="-28" y1="-28" x2="28" y2="28"/>
-                <line x1="-28" y1="28" x2="28" y2="-28"/>
+              <circle r="41" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity=".22"/>
+              <g stroke="var(--ink)" stroke-width="1.8" opacity=".7">
+                <line x1="0" y1="-41" x2="0" y2="41"/>
+                <line x1="-41" y1="0" x2="41" y2="0"/>
+                <line x1="-29" y1="-29" x2="29" y2="29"/>
+                <line x1="-29" y1="29" x2="29" y2="-29"/>
               </g>
               <circle r="5" fill="var(--ink)"/>
             </g>
 
             <g class="wheel wheel-front" transform="translate(360,300)">
               <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
-              <circle r="40" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity=".28"/>
-              <g stroke="var(--ink)" stroke-width="2" opacity=".75">
-                <line x1="-40" y1="0" x2="40" y2="0"/>
-                <line x1="0" y1="-40" x2="0" y2="40"/>
-                <line x1="-28" y1="-28" x2="28" y2="28"/>
-                <line x1="-28" y1="28" x2="28" y2="-28"/>
+              <circle r="41" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity=".22"/>
+              <g stroke="var(--ink)" stroke-width="1.8" opacity=".7">
+                <line x1="0" y1="-41" x2="0" y2="41"/>
+                <line x1="-41" y1="0" x2="41" y2="0"/>
+                <line x1="-29" y1="-29" x2="29" y2="29"/>
+                <line x1="-29" y1="29" x2="29" y2="-29"/>
               </g>
               <circle r="5" fill="var(--ink)"/>
             </g>
@@ -163,45 +164,54 @@
               <rect x="-10" y="18" width="12" height="8" rx="3" fill="var(--ink)"/>
             </g>
 
-            <!-- ===== 鹈鹕 ===== -->
+            <!-- ===== 鹈鹕（造型与骑行区一致，此处为静态版，整体下移 6px 以匹配车座 y≈238） ===== -->
             <g class="pelican">
               <!-- 尾羽 -->
-              <path d="M214 168 C190 162, 176 170, 168 184 C186 184, 202 182, 214 178 Z"
+              <path d="M204 220 C176 216, 156 226, 148 244 C172 244, 192 238, 206 232 Z"
                     fill="var(--pelican-shade)"/>
-              <!-- 身体 -->
-              <ellipse cx="248" cy="176" rx="42" ry="32" fill="var(--pelican)" transform="rotate(-8 248 176)"/>
+              <!-- 身体：竞速前倾坐姿 -->
+              <ellipse cx="242" cy="222" rx="47" ry="30"
+                       fill="var(--pelican)" transform="rotate(-22 242 222)"/>
               <!-- 腿 -->
-              <g class="legs" stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none">
-                <path class="leg leg-a" d="M244 202 L252 240 L258 258"/>
-                <path class="leg leg-b" d="M258 202 L252 240 L248 258"/>
+              <g class="legs" stroke="var(--orange)" stroke-width="7" stroke-linecap="round" fill="none">
+                <path class="leg leg-a" d="M236 246 L244 274 L250 292"/>
+                <path class="leg leg-b" d="M254 246 L248 274 L244 292"/>
               </g>
               <!-- 脖子 -->
-              <path d="M272 172 C286 150, 292 130, 300 112"
-                    stroke="var(--pelican)" stroke-width="22" stroke-linecap="round" fill="none"/>
+              <path d="M274 210 C294 196, 310 188, 326 184"
+                    stroke="var(--pelican)" stroke-width="24" stroke-linecap="round" fill="none"/>
               <!-- 头 -->
-              <circle cx="304" cy="98" r="22" fill="var(--pelican)"/>
+              <circle cx="336" cy="178" r="22" fill="var(--pelican)"/>
               <!-- 头冠 -->
-              <path d="M296 78 C300 68, 308 66, 314 70 C308 74, 306 78, 306 82 Z" fill="var(--pelican-shade)"/>
+              <path d="M330 158 C334 148, 343 146, 349 150 C343 155, 340 158, 340 162 Z"
+                    fill="var(--pelican-shade)"/>
               <!-- 喉囊 + 喙 -->
               <g class="beak">
-                <path d="M320 96 C348 92, 386 100, 404 112 C384 126, 344 126, 320 114 Z"
-                      fill="var(--pouch)"/>
-                <path d="M320 96 C348 92, 386 100, 404 112"
+                <path d="M352 184 C380 184, 412 192, 428 202
+                         C410 218, 372 218, 352 204 Z" fill="var(--pouch)"/>
+                <path d="M352 178 C382 176, 414 184, 430 194"
                       stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none"/>
-                <path d="M322 114 C346 124, 384 124, 402 112
-                         C392 130, 356 136, 330 128 C322 124, 320 118, 322 114 Z"
+                <path d="M352 200 C378 210, 410 210, 426 200
+                         C416 216, 380 222, 358 212 C352 208, 350 203, 352 200 Z"
                       fill="var(--orange)" opacity=".85"/>
               </g>
               <!-- 眼睛 -->
-              <circle cx="310" cy="92" r="4.5" fill="var(--ink)"/>
-              <circle cx="311.5" cy="90.5" r="1.6" fill="#fff"/>
-              <!-- 翅羽 -->
-              <path d="M232 166 C246 152, 274 148, 286 162 C272 178, 244 182, 232 166 Z"
-                    fill="var(--pelican-shade)" opacity=".85"/>
-              <!-- 翅膀（扇动） -->
+              <circle cx="342" cy="172" r="4.5" fill="var(--ink)"/>
+              <circle cx="343.5" cy="170.5" r="1.6" fill="#fff"/>
+              <!-- 覆羽 -->
+              <path d="M226 216 C240 202, 268 198, 280 212 C266 228, 238 232, 226 216 Z"
+                    fill="var(--pelican-shade)" opacity=".7"/>
+              <!-- 翅膀：翼根在肩部，向后上方扬起 -->
               <g class="wing">
-                <path d="M240 158 C230 132, 238 108, 258 100 C262 126, 256 148, 240 158 Z"
-                      fill="var(--pelican)" stroke="var(--pelican-shade)" stroke-width="2"/>
+                <path d="M246 210 C236 196, 220 184, 200 176
+                         C178 168, 154 166, 134 170
+                         C150 184, 172 196, 194 202
+                         C216 208, 240 214, 246 210 Z"
+                      fill="var(--pelican)" stroke="var(--pelican-shade)" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M238 206 C220 196, 198 188, 176 184"
+                      stroke="var(--pelican-shade)" stroke-width="1.6" fill="none" opacity=".8"/>
+                <path d="M234 210 C216 201, 194 193, 172 189"
+                      stroke="var(--pelican-shade)" stroke-width="1.4" fill="none" opacity=".6"/>
               </g>
             </g>
           </g>
@@ -457,27 +467,35 @@
         <div class="ride-track" id="rideTrack">
           <svg class="ride-svg" viewBox="0 0 520 400" role="img" aria-label="鹈鹕骑行动画">
             <g class="r-rig" id="rig">
-              <!-- 后轮 -->
-              <g class="r-wheel" id="wheelRear" style="--dur:.8s" transform="translate(196,290)">
-                <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
-                <g stroke="var(--ink)" stroke-width="2" opacity=".7">
-                  <line x1="-40" y1="0" x2="40" y2="0"/>
-                  <line x1="0" y1="-40" x2="0" y2="40"/>
-                  <line x1="-28" y1="-28" x2="28" y2="28"/>
-                  <line x1="-28" y1="28" x2="28" y2="-28"/>
+              <!-- 后轮：外层 g 负责绝对定位，内层 g 负责旋转。
+                   圆用 cx=cy=r，使包围盒从 (0,0) 开始，无负坐标，
+                   这样 CSS 的 transform-origin:center 才能正确解析到圆心。 -->
+              <g transform="translate(150,244)">
+                <g class="r-wheel" id="wheelRear" style="--dur:.8s">
+                  <circle cx="46" cy="46" r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
+                  <circle cx="46" cy="46" r="41" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity=".22"/>
+                  <g stroke="var(--ink)" stroke-width="1.8" opacity=".7">
+                    <line x1="46" y1="5"  x2="46" y2="87"/>
+                    <line x1="5"  y1="46" x2="87" y2="46"/>
+                    <line x1="17" y1="17" x2="75" y2="75"/>
+                    <line x1="17" y1="75" x2="75" y2="17"/>
+                  </g>
+                  <circle cx="46" cy="46" r="5" fill="var(--ink)"/>
                 </g>
-                <circle r="5" fill="var(--ink)"/>
               </g>
               <!-- 前轮 -->
-              <g class="r-wheel" id="wheelFront" style="--dur:.8s" transform="translate(360,290)">
-                <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
-                <g stroke="var(--ink)" stroke-width="2" opacity=".7">
-                  <line x1="-40" y1="0" x2="40" y2="0"/>
-                  <line x1="0" y1="-40" x2="0" y2="40"/>
-                  <line x1="-28" y1="-28" x2="28" y2="28"/>
-                  <line x1="-28" y1="28" x2="28" y2="-28"/>
+              <g transform="translate(314,244)">
+                <g class="r-wheel" id="wheelFront" style="--dur:.8s">
+                  <circle cx="46" cy="46" r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
+                  <circle cx="46" cy="46" r="41" fill="none" stroke="var(--ink)" stroke-width="1.2" opacity=".22"/>
+                  <g stroke="var(--ink)" stroke-width="1.8" opacity=".7">
+                    <line x1="46" y1="5"  x2="46" y2="87"/>
+                    <line x1="5"  y1="46" x2="87" y2="46"/>
+                    <line x1="17" y1="17" x2="75" y2="75"/>
+                    <line x1="17" y1="75" x2="75" y2="17"/>
+                  </g>
+                  <circle cx="46" cy="46" r="5" fill="var(--ink)"/>
                 </g>
-                <circle r="5" fill="var(--ink)"/>
               </g>
 
               <!-- 车架 -->
@@ -491,33 +509,73 @@
               <path d="M332 228 L352 204 M338 200 L368 200" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
               <path d="M236 234 L268 230" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"/>
 
-              <!-- 曲柄 -->
-              <g class="r-crank" id="crank" style="--dur:.8s" transform="translate(252,290)">
-                <line x1="-4" y1="-18" x2="4" y2="18" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
-                <rect x="-2" y="-26" width="12" height="8" rx="3" fill="var(--ink)"/>
-                <rect x="-10" y="18" width="12" height="8" rx="3" fill="var(--ink)"/>
+              <!-- 曲柄：外层定位，内层旋转。
+                   轴心位于包围盒中心 (6,26)，故 transform-origin 用 center。
+                   外圈位移 = 轴心目标(252,290) - (6,26) = (246,264) -->
+              <g transform="translate(245.5,264)">
+                <g class="r-crank" id="crank" style="--dur:.8s">
+                  <line x1="2" y1="8" x2="10" y2="44" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+                  <rect x="1" y="0" width="12" height="8" rx="3" fill="var(--ink)"/>
+                  <rect x="0" y="44" width="12" height="8" rx="3" fill="var(--ink)"/>
+                </g>
               </g>
 
               <!-- 鹈鹕 -->
               <g class="r-pelican" id="bobGroup">
-                <path d="M214 158 C190 152, 176 160, 168 174 C186 174, 202 172, 214 168 Z" fill="var(--pelican-shade)"/>
-                <ellipse cx="248" cy="166" rx="42" ry="32" fill="var(--pelican)" transform="rotate(-8 248 166)"/>
-                <g stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none">
-                  <path d="M244 192 L252 230 L258 248"/>
-                  <path d="M258 192 L252 230 L248 248"/>
+                <!-- 尾羽：向后伸出 -->
+                <path d="M204 214 C176 210, 156 220, 148 238 C172 238, 192 232, 206 226 Z"
+                      fill="var(--pelican-shade)"/>
+
+                <!-- 身体：竞速前倾坐姿（-22°），底部落在车座面 y≈230 上 -->
+                <ellipse cx="242" cy="216" rx="47" ry="30"
+                         fill="var(--pelican)" transform="rotate(-22 242 216)"/>
+
+                <!-- 腿：从身体底部下探，踩在曲柄踏板处 -->
+                <g stroke="var(--orange)" stroke-width="7" stroke-linecap="round" fill="none">
+                  <path class="leg leg-a" d="M236 240 L244 268 L250 286"/>
+                  <path class="leg leg-b" d="M254 240 L248 268 L244 286"/>
                 </g>
-                <path d="M272 162 C286 140, 292 120, 300 102" stroke="var(--pelican)" stroke-width="22" stroke-linecap="round" fill="none"/>
-                <circle cx="304" cy="88" r="22" fill="var(--pelican)"/>
-                <path d="M296 68 C300 58, 308 56, 314 60 C308 64, 306 68, 306 72 Z" fill="var(--pelican-shade)"/>
-                <path d="M320 86 C348 82, 386 90, 404 102 C384 116, 344 116, 320 104 Z" fill="var(--pouch)"/>
-                <path d="M320 86 C348 82, 386 90, 404 102" stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none"/>
-                <path d="M322 104 C346 114, 384 114, 402 102 C392 120, 356 126, 330 118 C322 114, 320 108, 322 104 Z" fill="var(--orange)" opacity=".85"/>
-                <circle cx="310" cy="82" r="4.5" fill="var(--ink)"/>
-                <circle cx="311.5" cy="80.5" r="1.6" fill="#fff"/>
-                <path d="M232 156 C246 142, 274 138, 286 152 C272 168, 244 172, 232 156 Z" fill="var(--pelican-shade)" opacity=".85"/>
+
+                <!-- 脖子：前伸，与身体连成流线 -->
+                <path d="M274 204 C294 190, 310 182, 326 178"
+                      stroke="var(--pelican)" stroke-width="24" stroke-linecap="round" fill="none"/>
+
+                <!-- 头 -->
+                <circle cx="336" cy="172" r="22" fill="var(--pelican)"/>
+                <!-- 头冠 -->
+                <path d="M330 152 C334 142, 343 140, 349 144 C343 149, 340 152, 340 156 Z"
+                      fill="var(--pelican-shade)"/>
+
+                <!-- 喉囊 -->
+                <path d="M352 178 C380 178, 412 186, 428 196
+                         C410 212, 372 212, 352 198 Z" fill="var(--pouch)"/>
+                <!-- 上喙 -->
+                <path d="M352 172 C382 170, 414 178, 430 188"
+                      stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <!-- 下喙边缘 -->
+                <path d="M352 194 C378 204, 410 204, 426 194
+                         C416 210, 380 216, 358 206 C352 202, 350 197, 352 194 Z"
+                      fill="var(--orange)" opacity=".85"/>
+
+                <!-- 眼 -->
+                <circle cx="342" cy="166" r="4.5" fill="var(--ink)"/>
+                <circle cx="343.5" cy="164.5" r="1.6" fill="#fff"/>
+
+                <!-- 覆羽 -->
+                <path d="M226 210 C240 196, 268 192, 280 206 C266 222, 238 226, 226 210 Z"
+                      fill="var(--pelican-shade)" opacity=".7"/>
+
+                <!-- 翅膀：翼根在肩部(246,204)，向后上方扬起约 30° -->
                 <g class="r-wing" id="wing" style="--dur:1.6s">
-                  <path d="M240 148 C230 122, 238 98, 258 90 C262 116, 256 138, 240 148 Z"
-                        fill="var(--pelican)" stroke="var(--pelican-shade)" stroke-width="2"/>
+                  <path d="M246 204 C236 190, 220 178, 200 170
+                           C178 162, 154 160, 134 164
+                           C150 178, 172 190, 194 196
+                           C216 202, 240 208, 246 204 Z"
+                        fill="var(--pelican)" stroke="var(--pelican-shade)" stroke-width="2.5" stroke-linejoin="round"/>
+                  <path d="M238 200 C220 190, 198 182, 176 178"
+                        stroke="var(--pelican-shade)" stroke-width="1.6" fill="none" opacity=".8"/>
+                  <path d="M234 204 C216 195, 194 187, 172 183"
+                        stroke="var(--pelican-shade)" stroke-width="1.4" fill="none" opacity=".6"/>
                 </g>
               </g>
             </g>

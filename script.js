@@ -162,11 +162,11 @@
   var spinDeg = 0;
 
   function applySpin(deg) {
-    crank.style.transform = 'translate(252px, 290px) rotate(' + deg + 'deg)';
-    wheels.forEach(function (w) {
-      var tx = w === wheels[0] ? 196 : 360;
-      w.style.transform = 'translate(' + tx + 'px, 290px) rotate(' + deg + 'deg)';
-    });
+    // 兜底路径：直接写 SVG transform 属性的 rotate。
+    // 元素已由外层 <g> 完成平移定位，此处只需纯旋转。
+    var t = 'rotate(' + deg + ')';
+    if (crank) crank.setAttribute('transform', t);
+    wheels.forEach(function (w) { if (w) w.setAttribute('transform', t); });
   }
 
   function supportsSvgCssAnimation() {
