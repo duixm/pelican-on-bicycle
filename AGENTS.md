@@ -61,11 +61,69 @@
 
 `script.js` 中的 `rAF` 循环仅作为老浏览器不支持 SVG CSS 动画时的兜底旋转，正常环境下不介入。
 
+### ⚠️ 两个必须遵守的结构约束（改动画前务必读）
+
+这两条是**真实渲染实测**踩出来的，违反任何一条都会导致动画错位：
+
+**1. 定位与旋转必须拆到两层 `<g>`**
+
+`@keyframes` 里的 `transform` 会**整体替换**元素上的 SVG `transform` 属性。若把 `translate` 写在同一个元素上，会被动画覆盖，元素被甩到画布原点。
+
+```html
+<!-- 正确：职责分离 -->
+<g transform="translate(150,244)">          <!-- 外层：绝对定位 -->
+  <g class="r-wheel" id="wheelRear">...</g>  <!-- 内层：只旋转 -->
+</g>
+```
+
+**2. 图形包围盒一律从 `(0,0)` 起算，不出现负坐标**
+
+`transform-box: fill-box` 配合 `transform-origin: center` 时，若 `getBBox()` 返回负坐标（如 `x=-46,y=-46`），浏览器会把原点解析到错误位置（实测偏移 `(-21,+14)`，导致偏心公转）。
+
+```html
+<!-- 正确：cx=cy=r，包围盒从 (0,0) 开始 -->
+<circle cx="46" cy="46" r="46"/>
+
+<!-- 错误：包围盒为 x=-46,y=-46，transform-origin:center 会失准 -->
+<circle r="46"/>
+```
+
+同时**不要用 CSS `translate` 属性给 SVG 元素做定位**——它与 `transform-box` 的交互同样不可靠。
+
 ## 无障碍与动效
 
 - 所有装饰性 SVG 标记 `aria-hidden="true"`；有语义的插图提供 `role="img"` + `aria-label`
 - 按钮使用 `aria-pressed` 表达播放状态
 - 全局遵循 `prefers-reduced-motion: reduce`，此时禁用一切动画与滚动进场
+
+## 验证方法
+
+**静态检查不够，必须做真实渲染验证。** 本项目第一版仅做了语法与结构检查，结果遗漏了 5 个真实缺陷（车轮偏心公转、鹈鹕悬空 29.8px、翅膀形态错误等）。
+
+本机可用方案：**无头 Edge + CDP**（`agent-browser` 不支持 Windows）。
+可用浏览器：`C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe`
+
+```bash
+# 1. 起静态服务（必须后台运行）
+node .workbuddy-ai/probe-server.js "E:/aicode/网站" 8098
+
+# 2. 综合测量（布局 / 动画 / 交互 / 多视口溢出 / 截图）
+node .workbuddy-ai/cdp-probe.js "http://127.0.0.1:8098/index.html" ".workbuddy-ai/report.txt"
+
+# 3. 滚动复测（IntersectionObserver 进场 / 数字滚动 / 进度条）
+node .workbuddy-ai/cdp-scroll.js
+
+# 4. 坐标校验（元素在 SVG 用户坐标系中的真实位置）
+node .workbuddy-ai/cdp-final.js
+
+# 5. 通用截图
+node .workbuddy-ai/shot.js "<url>" "<out.png>" [width] [height]
+```
+
+**判定动画是否真的在运行**：连续多次采样比对，不要单次采样。若采样间隔恰好是动画周期的整数倍，会读到不变的矩阵而误判为静止。
+
+**判定旋转轴是否正确**：用 `getScreenCTM()`（返回真实变换矩阵），不要用 `getBoundingClientRect()`（返回旋转后的包围盒，会误导）。
+
 
 ## 本地预览
 
@@ -86,7 +144,12 @@ python -m http.server 8080
 
 - [ ] 未引入任何外部依赖
 - [ ] 颜色全部走 CSS 变量
-- [ ] 在 980px / 720px / 420px 三档宽度下无横向滚动条、无元素重叠
+- [ ] **定位与旋转拆到了两层 `<g>`**（见上文结构约束）
+- [ ] **图形包围盒无负坐标**，未用 CSS `translate` 给 SVG 定位
+- [ ] 在 320 / 375 / 420 / 480 / 720 / 768 / 980 / 1200 / 1440 px 下横向溢出均为 0
 - [ ] 新增 SVG 图形有正确的 `viewBox`
 - [ ] 键盘可操作（Tab 可达、空格可暂停）
 - [ ] 开启"减弱动态效果"后页面静态可用
+- [ ] **做过真实渲染验证**（无头 Edge + CDP），而非仅语法检查
+- [ ] 报告结论时区分"实测数据"与"推测"
+
