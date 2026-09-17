@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鹈鹕骑自行车 · Pelican on a Bicycle</title>
+<meta name="description" content="一只鹈鹕，一辆自行车，以及一些关于它们为什么会在一起的理由。">
+<meta name="theme-color" content="#fbfaf7">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f6f78'/%3E%3Cpath d='M8 19c0-3.4 2.6-5.6 6-5.6h3.4l4.6 3.4-4.6.9c-.9.9-2.6 2.4-5.4 2.4H8z' fill='%23f4f2ec'/%3E%3Ccircle cx='12.4' cy='15.6' r='1.2' fill='%231f6f78'/%3E%3Ccircle cx='20' cy='25' r='3' fill='none' stroke='%23f4f2ec' stroke-width='1.6'/%3E%3Ccircle cx='11' cy='25' r='3' fill='none' stroke='%23f4f2ec' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true">
+        <circle cx="16" cy="16" r="15" fill="none" stroke="currentColor" stroke-width="1.5" opacity=".35"/>
+        <path d="M9 20c0-4 3-7 7-7h4l5 4-5 1c-1 1-3 3-7 3H9z" fill="currentColor"/>
+        <circle cx="14" cy="15" r="1.4" fill="var(--bg)"/>
+        <circle cx="22" cy="29" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+        <circle cx="9" cy="29" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+      <span>鹈鹕骑自行车</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#why">为什么</a>
+      <a href="#anatomy">解剖学</a>
+      <a href="#physics">物理学</a>
+      <a href="#species">种类</a>
+      <a href="#ride" class="nav-cta">开始骑行</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="展开菜单" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="sun"></div>
+      <div class="cloud c1"></div>
+      <div class="cloud c2"></div>
+      <div class="cloud c3"></div>
+      <div class="hills far"></div>
+      <div class="hills near"></div>
+    </div>
+
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">卷首语 · An Ode in Two Wheels</p>
+        <h1>
+          一只鹈鹕<br>
+          <span class="h1-accent">骑着自行车</span>
+        </h1>
+        <p class="lede">
+          它有大得离谱的喙、短到不合理的腿，以及一种完全不必要的、
+          对公路骑行的执着。
+        </p>
+        <div class="hero-actions">
+          <a href="#ride" class="btn btn-primary">看它骑</a>
+          <a href="#why" class="btn btn-ghost">为什么会有这事</a>
+        </div>
+        <dl class="hero-stats">
+          <div><dt>喙容量</dt><dd>13<span>L</span></dd></div>
+          <div><dt>巡航速度</dt><dd>42<span>km/h</span></dd></div>
+          <div><dt>载重上限</dt><dd>2<span>条鱼</span></dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-art">
+        <!-- 场景插画：鹈鹕骑车 -->
+        <svg class="scene" viewBox="0 0 520 420" role="img" aria-label="一只鹈鹕骑着自行车向前行驶">
+          <defs>
+            <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--sky-1)"/>
+              <stop offset="100%" stop-color="var(--sky-2)"/>
+            </linearGradient>
+            <linearGradient id="roadG" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="var(--road-1)"/>
+              <stop offset="100%" stop-color="var(--road-2)"/>
+            </linearGradient>
+          </defs>
+
+          <rect x="0" y="0" width="520" height="330" fill="url(#skyG)"/>
+          <circle cx="430" cy="72" r="34" fill="var(--sun)" opacity=".9"/>
+          <ellipse cx="120" cy="70" rx="52" ry="20" fill="#fff" opacity=".55"/>
+          <ellipse cx="168" cy="80" rx="38" ry="15" fill="#fff" opacity=".45"/>
+          <ellipse cx="352" cy="118" rx="44" ry="16" fill="#fff" opacity=".4"/>
+
+          <!-- 远山 -->
+          <path d="M0 268 L110 186 L200 268 Z" fill="var(--hill-far)" opacity=".55"/>
+          <path d="M150 268 L280 168 L410 268 Z" fill="var(--hill-far)" opacity=".45"/>
+          <path d="M330 268 L460 196 L520 268 Z" fill="var(--hill-far)" opacity=".5"/>
+
+          <!-- 路面 -->
+          <rect x="0" y="300" width="520" height="120" fill="url(#roadG)"/>
+          <path d="M0 300 H520" stroke="var(--road-line)" stroke-width="2" opacity=".5"/>
+          <g class="road-dash">
+            <rect class="dash" x="20"  y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
+            <rect class="dash" x="140" y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
+            <rect class="dash" x="260" y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
+            <rect class="dash" x="380" y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
+            <rect class="dash" x="500" y="348" width="34" height="4" rx="2" fill="var(--road-line)" opacity=".5"/>
+          </g>
+
+          <!-- 速度线 -->
+          <g class="speed" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" opacity=".55">
+            <line class="sl" x1="300" y1="196" x2="356" y2="196"/>
+            <line class="sl" x1="286" y1="222" x2="348" y2="222"/>
+            <line class="sl" x1="308" y1="248" x2="352" y2="248"/>
+          </g>
+
+          <!-- ===== 自行车 + 鹈鹕（整体承载位移） ===== -->
+          <g class="rig">
+
+            <!-- 车轮 -->
+            <g class="wheel wheel-rear" transform="translate(196,300)">
+              <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
+              <circle r="40" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity=".28"/>
+              <g stroke="var(--ink)" stroke-width="2" opacity=".75">
+                <line x1="-40" y1="0" x2="40" y2="0"/>
+                <line x1="0" y1="-40" x2="0" y2="40"/>
+                <line x1="-28" y1="-28" x2="28" y2="28"/>
+                <line x1="-28" y1="28" x2="28" y2="-28"/>
+              </g>
+              <circle r="5" fill="var(--ink)"/>
+            </g>
+
+            <g class="wheel wheel-front" transform="translate(360,300)">
+              <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
+              <circle r="40" fill="none" stroke="var(--ink)" stroke-width="1.5" opacity=".28"/>
+              <g stroke="var(--ink)" stroke-width="2" opacity=".75">
+                <line x1="-40" y1="0" x2="40" y2="0"/>
+                <line x1="0" y1="-40" x2="0" y2="40"/>
+                <line x1="-28" y1="-28" x2="28" y2="28"/>
+                <line x1="-28" y1="28" x2="28" y2="-28"/>
+              </g>
+              <circle r="5" fill="var(--ink)"/>
+            </g>
+
+            <!-- 车架 -->
+            <g class="frame" fill="none" stroke="var(--bike)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="196" y1="300" x2="252" y2="248"/>
+              <line x1="252" y1="248" x2="300" y2="300"/>
+              <line x1="196" y1="300" x2="300" y2="300"/>
+              <line x1="252" y1="248" x2="332" y2="238"/>
+              <line x1="332" y1="238" x2="300" y2="300"/>
+            </g>
+
+            <!-- 车把 -->
+            <path d="M332 238 L352 214 M338 210 L368 210" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+            <!-- 车座 -->
+            <path d="M236 244 L268 240" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"/>
+            <!-- 踏板曲柄 -->
+            <g class="crank" transform="translate(252,300)">
+              <line x1="-4" y1="-18" x2="4" y2="18" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+              <rect x="-2" y="-26" width="12" height="8" rx="3" fill="var(--ink)"/>
+              <rect x="-10" y="18" width="12" height="8" rx="3" fill="var(--ink)"/>
+            </g>
+
+            <!-- ===== 鹈鹕 ===== -->
+            <g class="pelican">
+              <!-- 尾羽 -->
+              <path d="M214 168 C190 162, 176 170, 168 184 C186 184, 202 182, 214 178 Z"
+                    fill="var(--pelican-shade)"/>
+              <!-- 身体 -->
+              <ellipse cx="248" cy="176" rx="42" ry="32" fill="var(--pelican)" transform="rotate(-8 248 176)"/>
+              <!-- 腿 -->
+              <g class="legs" stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none">
+                <path class="leg leg-a" d="M244 202 L252 240 L258 258"/>
+                <path class="leg leg-b" d="M258 202 L252 240 L248 258"/>
+              </g>
+              <!-- 脖子 -->
+              <path d="M272 172 C286 150, 292 130, 300 112"
+                    stroke="var(--pelican)" stroke-width="22" stroke-linecap="round" fill="none"/>
+              <!-- 头 -->
+              <circle cx="304" cy="98" r="22" fill="var(--pelican)"/>
+              <!-- 头冠 -->
+              <path d="M296 78 C300 68, 308 66, 314 70 C308 74, 306 78, 306 82 Z" fill="var(--pelican-shade)"/>
+              <!-- 喉囊 + 喙 -->
+              <g class="beak">
+                <path d="M320 96 C348 92, 386 100, 404 112 C384 126, 344 126, 320 114 Z"
+                      fill="var(--pouch)"/>
+                <path d="M320 96 C348 92, 386 100, 404 112"
+                      stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <path d="M322 114 C346 124, 384 124, 402 112
+                         C392 130, 356 136, 330 128 C322 124, 320 118, 322 114 Z"
+                      fill="var(--orange)" opacity=".85"/>
+              </g>
+              <!-- 眼睛 -->
+              <circle cx="310" cy="92" r="4.5" fill="var(--ink)"/>
+              <circle cx="311.5" cy="90.5" r="1.6" fill="#fff"/>
+              <!-- 翅羽 -->
+              <path d="M232 166 C246 152, 274 148, 286 162 C272 178, 244 182, 232 166 Z"
+                    fill="var(--pelican-shade)" opacity=".85"/>
+              <!-- 翅膀（扇动） -->
+              <g class="wing">
+                <path d="M240 158 C230 132, 238 108, 258 100 C262 126, 256 148, 240 158 Z"
+                      fill="var(--pelican)" stroke="var(--pelican-shade)" stroke-width="2"/>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- 为什么 -->
+  <section class="section" id="why">
+    <div class="wrap">
+      <p class="eyebrow">第一部分</p>
+      <h2>为什么是鹈鹕，为什么是自行车</h2>
+      <p class="section-lede">
+        这不是一个随机的组合。两者之间存在某种结构性的互补——尽管没有任何一方要求过这种互补。
+      </p>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M6 22c0-6 5-10 11-10h6l9 5-9 2c-2 2-5 4-10 4H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="13" cy="18" r="2" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>喙是天然的整流罩</h3>
+          <p>鹈鹕的喙长可达 45 厘米，前伸时形成流线型截面。风洞数据显示其减阻效果约为 8%，相当于免费获得一个入门级空气动力学配件。</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <circle cx="10" cy="29" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <circle cx="30" cy="29" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+              <path d="M10 29 L18 17 H28 M18 17 L24 29 M18 17 L13 13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>腿短，但齿轮比可以补偿</h3>
+          <p>鹈鹕腿长仅约 15 厘米，踩踏力矩天生吃亏。解决方案不是进化，是换一个 50/34 的紧凑牙盘。工程学在此胜出。</p>
+        </article>
+
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <path d="M20 5v22M20 27c-5 0-9 3-9 6h18c0-3-4-6-9-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M9 12h22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h3>喉囊是最优的补给箱</h3>
+          <p>可扩张至 13 升的喉囊同时承担水袋、能量胶仓与临时渔获保存三项功能。没有任何一款商业骑行包能与之相比。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 解剖学 -->
+  <section class="section section-alt" id="anatomy">
+    <div class="wrap">
+      <p class="eyebrow">第二部分</p>
+      <h2>骑行姿态解剖</h2>
+      <p class="section-lede">将一只鹈鹕正确安置在自行车上，需要解决四个具体问题。</p>
+
+      <div class="anatomy">
+        <ol class="anatomy-list">
+          <li>
+            <span class="num">01</span>
+            <div>
+              <h3>握把</h3>
+              <p>翼尖缺乏对握能力。实践中的妥协方案是使用翼钩勾住弯把下把位，代价是转向手感极其迟钝。</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <div>
+              <h3>坐姿</h3>
+              <p>骨盆宽度约为车座的 1.7 倍，必须外扩坐骨。长期骑行建议更换宽坐垫，否则后果自负。</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <div>
+              <h3>踩踏</h3>
+              <p>踝关节结构不适合圆周运动，实际动作更接近"上下扑腾"。功率计读数因此极不稳定。</p>
+            </div>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <div>
+              <h3>平衡</h3>
+              <p>重心偏高且前倾，低速时几乎无法保持直立。建议始终保持 20 km/h 以上，或者干脆不要停。</p>
+            </div>
+          </li>
+        </ol>
+
+        <figure class="anatomy-art">
+          <svg viewBox="0 0 400 460" role="img" aria-label="鹈鹕骑行姿态侧面示意图">
+            <defs>
+              <linearGradient id="anatG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="var(--accent)" stop-opacity=".13"/>
+                <stop offset="100%" stop-color="var(--accent)" stop-opacity=".04"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="0" width="400" height="460" rx="18" fill="url(#anatG)"/>
+
+            <!-- 自行车简形 -->
+            <g fill="none" stroke="var(--ink)" stroke-width="2.5" opacity=".55">
+              <circle cx="100" cy="360" r="52"/>
+              <circle cx="300" cy="360" r="52"/>
+              <line x1="100" y1="360" x2="170" y2="288"/>
+              <line x1="170" y1="288" x2="240" y2="360"/>
+              <line x1="100" y1="360" x2="240" y2="360"/>
+              <line x1="170" y1="288" x2="278" y2="276"/>
+              <line x1="278" y1="276" x2="240" y2="360"/>
+              <line x1="278" y1="276" x2="300" y2="244"/>
+            </g>
+
+            <!-- 鹈鹕本体 -->
+            <g>
+              <ellipse cx="168" cy="222" rx="44" ry="33" fill="var(--pelican)" transform="rotate(-8 168 222)"/>
+              <path d="M196 220 C214 196, 220 168, 228 146"
+                    stroke="var(--pelican)" stroke-width="22" stroke-linecap="round" fill="none"/>
+              <circle cx="234" cy="132" r="23" fill="var(--pelican)"/>
+              <path d="M250 128 C280 122, 318 130, 336 142 C316 156, 274 156, 250 146 Z" fill="var(--pouch)"/>
+              <path d="M250 128 C280 122, 318 130, 336 142" stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none"/>
+              <circle cx="241" cy="126" r="4.5" fill="var(--ink)"/>
+              <g stroke="var(--orange)" stroke-width="5" stroke-linecap="round" fill="none">
+                <path d="M164 250 L172 288 L178 306"/>
+                <path d="M178 250 L172 288 L166 306"/>
+              </g>
+            </g>
+
+            <!-- 标注线 -->
+            <g stroke="var(--accent)" stroke-width="1.6" dashed="4 4" opacity=".9" fill="none">
+              <line x1="336" y1="142" x2="360" y2="142"/>
+              <line x1="360" y1="142" x2="360" y2="70"/>
+              <line x1="336" y1="142" x2="352" y2="142"/>
+            </g>
+            <g font-size="12" fill="var(--accent)" font-family="var(--mono)">
+              <text x="212" y="60">喙 45cm</text>
+              <text x="30" y="404">轴距 880mm</text>
+              <text x="290" y="430">轮径 622mm</text>
+              <text x="24" y="286">骨盆外扩</text>
+            </g>
+            <g stroke="var(--accent)" stroke-width="1.6" opacity=".8">
+              <line x1="126" y1="282" x2="150" y2="282"/>
+              <line x1="126" y1="276" x2="126" y2="288"/>
+              <line x1="150" y1="276" x2="150" y2="288"/>
+              <line x1="60" y1="396" x2="290" y2="396" stroke-dasharray="4 4"/>
+            </g>
+          </svg>
+          <figcaption>图 1 · 侧视姿态。虚线为实测参考尺寸，非推荐值。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 物理学 -->
+  <section class="section" id="physics">
+    <div class="wrap">
+      <p class="eyebrow">第三部分</p>
+      <h2>一些可以做出来的数字</h2>
+      <p class="section-lede">
+        下列数值基于一只体重 9 公斤的卷羽鹈鹕、一辆 8.5 公斤的铝架公路车，以及一个平坦、无风、路面良好的理想环境推得。
+      </p>
+
+      <div class="metrics">
+        <div class="metric">
+          <span class="metric-val" data-count="42">0</span><span class="metric-unit">km/h</span>
+          <p>平路巡航速度</p>
+        </div>
+        <div class="metric">
+          <span class="metric-val" data-count="186">0</span><span class="metric-unit">W</span>
+          <p>维持巡航所需功率</p>
+        </div>
+        <div class="metric">
+          <span class="metric-val" data-count="78">0</span><span class="metric-unit">%</span>
+          <p>风阻占总阻力比例</p>
+        </div>
+        <div class="metric">
+          <span class="metric-val" data-count="13">0</span><span class="metric-unit">L</span>
+          <p>喉囊可用补给容量</p>
+        </div>
+      </div>
+
+      <div class="note">
+        <p><strong>一个诚实的限制：</strong>以上功率数据假设鹈鹕能够以稳定圆周方式踩踏。现有的运动学观察并不支持这一假设。因此这些数字更接近"如果它可以"，而不是"它实际做到"。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 种类 -->
+  <section class="section section-alt" id="species">
+    <div class="wrap">
+      <p class="eyebrow">第四部分</p>
+      <h2>不同鹈鹕的骑行风格</h2>
+      <p class="section-lede">八种鹈鹕之中，只有三种被认为具备上路潜力。其余五种不适合，理由列在右侧。</p>
+
+      <div class="species">
+        <article class="species-row" data-grade="A">
+          <div class="species-head">
+            <h3>卷羽鹈鹕 <em>Pelecanus crispus</em></h3>
+            <span class="badge badge-a">最适合</span>
+          </div>
+          <p>体型最大，翼展近 3 米，重心相对稳定。缺点是体重带来的爬坡劣势明显，适合平路计时赛。</p>
+          <div class="bar"><i style="--w:92%"></i></div>
+        </article>
+
+        <article class="species-row" data-grade="B">
+          <div class="species-head">
+            <h3>白鹈鹕 <em>Pelecanus onocrotalus</em></h3>
+            <span class="badge badge-b">推荐</span>
+          </div>
+          <p>体重较轻，踩踏频率更高，起步加速更好。喉囊偏软，高速下会持续抖动，产生额外的扰流噪声。</p>
+          <div class="bar"><i style="--w:74%"></i></div>
+        </article>
+
+        <article class="species-row" data-grade="B">
+          <div class="species-head">
+            <h3>褐鹈鹕 <em>Pelecanus occidentalis</em></h3>
+            <span class="badge badge-b">推荐</span>
+          </div>
+          <p>唯一擅长俯冲入水的种类，平衡感最佳。但对盐雾环境之外的铺装路面缺乏兴趣，训练配合度低。</p>
+          <div class="bar"><i style="--w:68%"></i></div>
+        </article>
+
+        <article class="species-row is-dim" data-grade="C">
+          <div class="species-head">
+            <h3>其余五种 <em>Pelecanus spp.</em></h3>
+            <span class="badge badge-c">不适用</span>
+          </div>
+          <p>包括斑嘴鹈鹕、澳洲鹈鹕、秘鲁鹈鹕等。主要障碍是体型偏小导致的车架不匹配，以及缺乏可训练的踩踏节律。它们更适合游泳。</p>
+          <div class="bar"><i style="--w:26%"></i></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 骑行 -->
+  <section class="section ride" id="ride">
+    <div class="wrap">
+      <p class="eyebrow">第五部分</p>
+      <h2>现在，让它骑起来</h2>
+      <p class="section-lede">点击下面的按钮，或者直接踩踏板。动画会实时反映当前的踩踏频率。</p>
+
+      <div class="ride-stage">
+        <div class="ride-sky" aria-hidden="true">
+          <div class="r-sun"></div>
+          <div class="r-cloud rc1"></div>
+          <div class="r-cloud rc2"></div>
+          <div class="r-ground"></div>
+        </div>
+
+        <div class="ride-track" id="rideTrack">
+          <svg class="ride-svg" viewBox="0 0 520 400" role="img" aria-label="鹈鹕骑行动画">
+            <g class="r-rig" id="rig">
+              <!-- 后轮 -->
+              <g class="r-wheel" id="wheelRear" style="--dur:.8s" transform="translate(196,290)">
+                <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
+                <g stroke="var(--ink)" stroke-width="2" opacity=".7">
+                  <line x1="-40" y1="0" x2="40" y2="0"/>
+                  <line x1="0" y1="-40" x2="0" y2="40"/>
+                  <line x1="-28" y1="-28" x2="28" y2="28"/>
+                  <line x1="-28" y1="28" x2="28" y2="-28"/>
+                </g>
+                <circle r="5" fill="var(--ink)"/>
+              </g>
+              <!-- 前轮 -->
+              <g class="r-wheel" id="wheelFront" style="--dur:.8s" transform="translate(360,290)">
+                <circle r="46" fill="none" stroke="var(--ink)" stroke-width="5"/>
+                <g stroke="var(--ink)" stroke-width="2" opacity=".7">
+                  <line x1="-40" y1="0" x2="40" y2="0"/>
+                  <line x1="0" y1="-40" x2="0" y2="40"/>
+                  <line x1="-28" y1="-28" x2="28" y2="28"/>
+                  <line x1="-28" y1="28" x2="28" y2="-28"/>
+                </g>
+                <circle r="5" fill="var(--ink)"/>
+              </g>
+
+              <!-- 车架 -->
+              <g fill="none" stroke="var(--bike)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="196" y1="290" x2="252" y2="238"/>
+                <line x1="252" y1="238" x2="300" y2="290"/>
+                <line x1="196" y1="290" x2="300" y2="290"/>
+                <line x1="252" y1="238" x2="332" y2="228"/>
+                <line x1="332" y1="228" x2="300" y2="290"/>
+              </g>
+              <path d="M332 228 L352 204 M338 200 L368 200" fill="none" stroke="var(--ink)" stroke-width="5" stroke-linecap="round"/>
+              <path d="M236 234 L268 230" stroke="var(--ink)" stroke-width="8" stroke-linecap="round"/>
+
+              <!-- 曲柄 -->
+              <g class="r-crank" id="crank" style="--dur:.8s" transform="translate(252,290)">
+                <line x1="-4" y1="-18" x2="4" y2="18" stroke="var(--ink)" stroke-width="4" stroke-linecap="round"/>
+                <rect x="-2" y="-26" width="12" height="8" rx="3" fill="var(--ink)"/>
+                <rect x="-10" y="18" width="12" height="8" rx="3" fill="var(--ink)"/>
+              </g>
+
+              <!-- 鹈鹕 -->
+              <g class="r-pelican" id="bobGroup">
+                <path d="M214 158 C190 152, 176 160, 168 174 C186 174, 202 172, 214 168 Z" fill="var(--pelican-shade)"/>
+                <ellipse cx="248" cy="166" rx="42" ry="32" fill="var(--pelican)" transform="rotate(-8 248 166)"/>
+                <g stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none">
+                  <path d="M244 192 L252 230 L258 248"/>
+                  <path d="M258 192 L252 230 L248 248"/>
+                </g>
+                <path d="M272 162 C286 140, 292 120, 300 102" stroke="var(--pelican)" stroke-width="22" stroke-linecap="round" fill="none"/>
+                <circle cx="304" cy="88" r="22" fill="var(--pelican)"/>
+                <path d="M296 68 C300 58, 308 56, 314 60 C308 64, 306 68, 306 72 Z" fill="var(--pelican-shade)"/>
+                <path d="M320 86 C348 82, 386 90, 404 102 C384 116, 344 116, 320 104 Z" fill="var(--pouch)"/>
+                <path d="M320 86 C348 82, 386 90, 404 102" stroke="var(--orange)" stroke-width="6" stroke-linecap="round" fill="none"/>
+                <path d="M322 104 C346 114, 384 114, 402 102 C392 120, 356 126, 330 118 C322 114, 320 108, 322 104 Z" fill="var(--orange)" opacity=".85"/>
+                <circle cx="310" cy="82" r="4.5" fill="var(--ink)"/>
+                <circle cx="311.5" cy="80.5" r="1.6" fill="#fff"/>
+                <path d="M232 156 C246 142, 274 138, 286 152 C272 168, 244 172, 232 156 Z" fill="var(--pelican-shade)" opacity=".85"/>
+                <g class="r-wing" id="wing" style="--dur:1.6s">
+                  <path d="M240 148 C230 122, 238 98, 258 90 C262 116, 256 138, 240 148 Z"
+                        fill="var(--pelican)" stroke="var(--pelican-shade)" stroke-width="2"/>
+                </g>
+              </g>
+            </g>
+
+            <!-- 尘土 -->
+            <g class="dust" id="dust" opacity=".5">
+              <circle cx="150" cy="286" r="4" fill="var(--road-line)"/>
+              <circle cx="136" cy="294" r="6" fill="var(--road-line)"/>
+              <circle cx="118" cy="288" r="3" fill="var(--road-line)"/>
+              <circle cx="104" cy="298" r="5" fill="var(--road-line)"/>
+            </g>
+          </svg>
+        </div>
+
+        <div class="ride-controls">
+          <button class="btn btn-primary" id="playBtn" aria-pressed="true">
+            <span class="btn-ico" id="playIcon">❚❚</span>
+            <span id="playLabel">暂停</span>
+          </button>
+          <div class="slider-wrap">
+            <label for="speedRange">踏频 <b id="speedVal">60</b> rpm</label>
+            <input type="range" id="speedRange" min="20" max="140" value="60" step="5">
+          </div>
+          <div class="slider-wrap">
+            <label for="windRange">风力 <b id="windVal">中</b></label>
+            <input type="range" id="windRange" min="0" max="2" value="1" step="1">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 收尾 -->
+  <section class="section outro">
+    <div class="wrap narrow">
+      <h2>结语</h2>
+      <p>
+        一只鹈鹕骑自行车，在生物学上没有任何正当理由。它不会更快抵达任何地方，
+        也不会因此获得更多鱼。车给它的是纯粹多余的位移能力，
+        而它似乎对此相当满意。
+      </p>
+      <p class="outro-note">本页面所有数据均为虚构。插画由 SVG 手绘而成，未经任何鹈鹕授权。</p>
+      <a href="#top" class="btn btn-ghost">回到顶部</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <span class="dot"></span>
+      <span>鹈鹕骑自行车 · Pelican on a Bicycle</span>
+    </div>
+    <p class="footer-meta">手写 SVG · 零依赖 · 无鹈鹕在制作过程中受到伤害</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

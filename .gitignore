@@ -1,0 +1,16 @@
+# 依赖与构建产物（本项目零依赖，此处为通用兜底）
+node_modules/
+dist/
+build/
+.cache/
+*.log
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# AI 助手工作目录
+.workbuddy-ai/
